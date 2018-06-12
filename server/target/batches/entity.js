@@ -20,10 +20,9 @@ __decorate([
     __metadata("design:type", Number)
 ], Batch.prototype, "id", void 0);
 __decorate([
-    class_validator_1.IsString(),
     typeorm_1.Column('text', { nullable: false }),
-    __metadata("design:type", String)
-], Batch.prototype, "title", void 0);
+    __metadata("design:type", Number)
+], Batch.prototype, "batchNumber", void 0);
 __decorate([
     typeorm_1.Column('date', { nullable: false }),
     class_validator_1.MinLength(10),

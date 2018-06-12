@@ -1,60 +1,44 @@
 import React, {PureComponent} from 'react'
-import PropTypes from 'prop-types'
-import { Link } from "react-router-dom";
-import { getBatches, getBatch} from '../../actions/batches'
-import { connect } from 'react-redux'
-import index from '../../reducers';
+import {connect} from 'react-redux'
+import {getBatches} from '../../actions/batches'
+import {Link} from 'react-router-dom'
+import BatchForm from './BatchForm'
+import Paper from 'material-ui/Paper'
 
-class BatchesList extends PureComponent {
+class BatchesPage extends PureComponent {
 
-componentWillMount() {
-    this.props.getBatches();
-}
+    componentWillMount(){
+        this.props.getBatches()
+    }
 
-render() {
+    render(){
+        const {batches} = this.props
+        const {currentUser} = this.props
 
-    const {batches} = this.props;
-
-    const OrderedBatches = batches.sort(function(a, b) {
+        const OrderedBatches = batches.sort(function(a, b) {
         return a.id - b.id;
-    })
+        })
 
-return(
-    <div>
-        <h1>Codaisseur Student Batches</h1>
-        <table>
-            <thread>
-                <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                </tr>
-            </thread>
-            <tbody>
-                {OrderedBatches.map(batch => (
-                <tr key={batch.id}>
-                <td>{batch.id}</td>
-                <td>
-                    <Link
-                    className="link"
-                    to={`/batches/${batch.id}`}
-                    onClick={() => this.fetchBatch(batch.id)}>
-                   {batch.title}
-                    </Link>
-                </td>
-                </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>
-)}}
-
-const mapStateToProps = function(state) {
-    return {
-        batches: state.batches
-    };
+        // if (this.props.currentUser)
+        return(
+            <Paper className="outer-paper">
+            <h2>Add a new batch</h2>
+            <p>Date MM/DD/YYYY format</p>
+            <BatchForm />
+            <h1>All classes: </h1>
+            { OrderedBatches.map(batches =>
+                <div className= "batchPage">
+                <Link to={`/batches/${batches.batchNumber}`}><h3>BATCH NUMBER {batches.batchNumber}  -   Start Date: {batches.startDate}  End Date: {batches.endDate}</h3></Link>
+                </div>
+            )}
+            </Paper>
+        )
+    }
 }
 
-export default connect(mapStateToProps, {getBatches})(BatchesList)
+const mapStateToProps = (state) => ({
+    batches: state.batches,
+    currentUser: state.currentUser
+})
 
-
-  
+export default connect (mapStateToProps, {getBatches})(BatchesPage)

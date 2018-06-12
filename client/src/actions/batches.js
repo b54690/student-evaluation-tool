@@ -10,15 +10,15 @@ export const UPDATE_BATCH_SUCCESS = 'UPDATE_BATCH_SUCCESS'
 export const UPDATE_BATCHES = 'UPDATE_BATCHES'
 
 
-export const createBatch = (data) => (dispatch, getState) => {
+export const addBatch = (data) => (dispatch, getState) => {
     const state = getState()
-    const jwt = state.currentUser.jwt
+    // const jwt = state.currentUser.jwt
 
-    if (isExpired(jwt)) return dispatch(logout())
+    // if (isExpired(jwt)) return dispatch(logout())
 
     request
       .post(`${baseUrl}/batches`)
-      .set('Authorization', `Bearer ${jwt}`)
+      // .set('Authorization', `Bearer ${jwt}`)
       .send(data)
       .then(response => dispatch({
           type: ADD_BATCH,
