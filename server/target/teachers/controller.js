@@ -27,7 +27,7 @@ let TeacherController = class TeacherController {
     async getTeacherById(teacherId) {
         const teacherById = await entity_1.Teacher.findOne(teacherId);
         if (!teacherById)
-            throw new routing_controllers_1.NotFoundError('Teacher doesn\'t exist');
+            throw new routing_controllers_1.NotFoundError('Teacher not found');
         if (teacherById) {
             return { teacherById };
         }

@@ -9,7 +9,7 @@ export default class TeacherController {
     @Param('id') teacherId: number
   ) {
     const teacherById = await Teacher.findOne(teacherId)
-    if (!teacherById) throw new NotFoundError('Teacher doesn\'t exist')
+    if (!teacherById) throw new NotFoundError('Teacher not found')
     if (teacherById) {
       return {teacherById}
     }
