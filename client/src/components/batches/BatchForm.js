@@ -1,59 +1,69 @@
-import React, { PureComponent } from 'react'
-import Paper from 'material-ui/Paper'
+import React, {PureComponent} from 'react'
+import {connect} from 'react-redux'
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField'
+import {addBatch} from '../../actions/batches'
 
-export default class BatchForm extends PureComponent {
-	state = {}
 
-	handleSubmit = (e) => {
-		e.preventDefault()
-		this.props.onSubmit(this.state)
-	}
+class BatchForm extends PureComponent {
+    state = {}
 
-	handleChange = (event) => {
-    const {name, value} = event.target
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.addBatch(this.state)
+    }
 
-    this.setState({
-      [name]: value
-    })
-  }
+    handleChange = (e) => {
+        const {name, value} = e.target
 
-	render() {
-		return (
-			<Paper className="outer-paper">
-				<form onSubmit={this.handleSubmit}>
-					<TextField
-						id="batchNumber"
-						label="Batch Number"
-						name="batchNumber"
-						type="number"
-						value={ this.state.batchNumber || '' }
-						onChange={ this.handleChange }
-					/>
-					<TextField
-						id="startDate"
-						name="startDate"
-						type="date"
-						value={ this.state.startDate || '' }
-						onChange={ this.handleChange }
-					/>
-					<TextField
-						id="endDate"
-						name="endDate"
-						type="date"
-						value={ this.state.endDate || '' }
-						onChange={ this.handleChange }
-					/>
-					<Button
-						type="submit"
-						color="primary"
-						variant="raised"
-					>
-						Save
-					</Button>
-				</form>
-			</Paper>
-		)
+        this.setState({
+          [name] : value
+        })
+      };
+
+    render() {
+
+        return(
+            <form onSubmit={this.handleSubmit} className="addClassForm">
+                <TextField
+                    id='batch'
+                    name='batchNumber'
+                    label='Batch Number'
+                    value={this.state.batchNumber || ''}
+                    onChange={this.handleChange}
+                />
+                <TextField
+                  id='startDate'
+                  name='startDate'
+                  label='Start Date'
+                  value={this.state.startDate || ''}
+                  onChange={this.handleChange}
+                  />
+                <TextField
+                    id='endDate'
+                    name='endDate'
+                    label='End Date'
+                    value={this.state.endDate || ''}
+                    onChange={this.handleChange}
+                />
+                <Button
+                    type='submit'
+                    color="secondary"
+                    variant="raised"
+                    className="create-class"
+                >
+                    Add a batch
+                </Button>
+            </form>
+        )
+    }
+}
+
+
+const mapStateToProps = function (state) {
+	return {
+        batches: state.batches
 	}
 }
+
+export default connect(mapStateToProps, {addBatch})(BatchForm)

@@ -10,10 +10,8 @@ export class Batch extends BaseEntity {
   @PrimaryGeneratedColumn()
   id?: number
 
-  @IsString()
-  @Column('text', {nullable:false})
-  title: string
-
+  @Column('text', { nullable: false })
+  batchNumber?: Number
 
   @Column('date', {nullable:false})
   @MinLength(10)
