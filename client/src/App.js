@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import SignupPage from './components/signup/SignupPage'
 import LogoutPage from './components/logout/LogoutPage'
 import TopBar from './components/layout/TopBar'
+import BatchesList from './components/batches/BatchesList'
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/logout" component={LogoutPage} />
             <Route exact path="/signup" component={SignupPage} />
+            <Route exact path="/batches" component={BatchesList} />
           </main>
         </div>
       </Router>
