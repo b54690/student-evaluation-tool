@@ -1,29 +1,17 @@
-import { UPDATE_BATCHES } from '../actions/batches'
+import {ADD_BATCH, GET_BATCH, GET_BATCHES} from '../actions/batches'
 
-export default (state = null, {type, payload}) => {
+export default (state = [], {type, payload}) => {
   switch (type) {
-    case UPDATE_BATCHES:
-      // sort the batches based on id, newest batches first
-      payload.sort((a, b) => a.id - b.id)
+    case GET_BATCH:
+      return payload
 
-    return payload.reduce((batches, batch) => {
-      // sort students based on id
-      batch.students.sort((a, b) => a.id - b.id)
+    case GET_BATCHES:
+        return payload
 
-      batch.students.reduce((students, student) => {
-        // sort evaluations based on id, before selecting the last element for the last color
-        const evaluations = student.evaluations.sort((a, b) => a.id - b.id)
-        student.lastColor = evaluations.slice(-1)[0] ? evaluations.slice(-1)[0].color : null
+    case ADD_BATCH:
+      return [...state, payload]
 
-        return student;
-      }, {})
-
-      batches[batch.id] = batch
-
-      return batches
-    }, {})
-
-  default:
-    return state
+    default:
+      return state
   }
 }

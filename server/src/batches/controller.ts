@@ -1,5 +1,7 @@
 import { JsonController, Get, Post, Param, Body, NotFoundError } from 'routing-controllers'
+import * as request from 'superagent'
 import { Batch } from './entity'
+
 
 @JsonController()
 export default class BatchController {
