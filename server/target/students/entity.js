@@ -34,7 +34,7 @@ __decorate([
     class_validator_1.IsString(),
     typeorm_1.Column('text'),
     __metadata("design:type", String)
-], Student.prototype, "profilePictureUrl", void 0);
+], Student.prototype, "picture", void 0);
 __decorate([
     typeorm_1.ManyToOne(_ => entity_1.Batch, batch => batch.students),
     __metadata("design:type", entity_1.Batch)

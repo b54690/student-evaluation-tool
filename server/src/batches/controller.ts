@@ -1,34 +1,34 @@
-import { JsonController, Get, Post, Param, Body, NotFoundError } from 'routing-controllers'
-import * as request from 'superagent'
-import { Batch } from './entity'
-
+import { JsonController, Param, NotFoundError, Get, Body, HttpCode, Post, Authorized } from 'routing-controllers'
+import {Batch} from './entity'
 
 @JsonController()
 export default class BatchController {
 
-  @Get('/batches')
-  async allBatches(){
-    const batches = await Batch.find()
-    if (!batches) throw new NotFoundError('Batches table doesn\'t exist')
-    return batches
+  // @Authorized()
+  @Post('/batches')
+  @HttpCode(201)
+  async createBatch(
+    @Body() batch: Batch,
+  ) {
+    const createdBatch = await Batch.create(batch).save()
+    return createdBatch
   }
 
+  // @Authorized()
+  @Get('/batches')
+  getBatches() {
+    return Batch.find()
+  }
+
+
+  // @Authorized()
   @Get('/batches/:id([0-9]+)')
-  async getBatchById(
+  @HttpCode(200)
+  async getBatch(
     @Param('id') batchId: number
   ) {
-    const batchById = await Batch.findOne(batchId)
-    if (!batchById) throw new NotFoundError('Batch doesn\'t exist')
-    if (batchById) {
-      return {batchById}
-    }
-  }
-
-  @Post('/batches')
-  async createBatch(
-    @Body() batch: Batch
-  ) {
-    const entity = await batch.save()
-    return { entity }
+    const batch = await Batch.findOne(batchId)
+    if (!batch) throw new NotFoundError('Batch does not exist!')
+    return batch
   }
 }

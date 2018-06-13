@@ -1,18 +1,22 @@
-import { JsonController, Get, Post, Delete, Patch, Param, Body, BodyParam, NotFoundError } from 'routing-controllers'
+import { JsonController, Get, Post, Delete, Patch, Param, Body, BodyParam, BadRequestError, NotFoundError, HttpCode } from 'routing-controllers'
 import { Student } from './entity'
 import { Evaluation } from '../evaluations/entity'
-
-import { Batch } from '../batches/entity'
+import  {Batch} from '../batches/entity'
 
 @JsonController()
 export default class StudentController {
 
-  @Get('/students')
-  async allStudents(){
-    const students = await Student.find()
-    if (!students) throw new NotFoundError('Students table doesn\'t exist')
-    return {students}
-  }
+  @Get('/batches/:id([0-9]+)/students')
+    @HttpCode(200)
+    async getStudents(
+      @Param('id') batchId: number
+    ) {
+      const batch = await Batch.findOne(batchId)
+      if (!batch) throw new NotFoundError('Batch not found!')
+  
+      return batch.students
+
+    }
 
   @Get('/students/:id([0-9]+)')
   async getStudentById(
@@ -25,16 +29,20 @@ export default class StudentController {
     }
   }
 
-  @Post('/students')
-  async createStudent(
-    @Body() student: Student,
-    @BodyParam('batchId', {required: true}) batchId: number
-  ) {
-    const batch = await Batch.findOne(batchId)
-    if(batch instanceof Batch) student.batch = batch
-    const entity = await student.save()
-    return { entity }
-  }
+  // @Authorized()
+    @Post('/batches/:id([0-9]+)/students')
+    @HttpCode(201)
+    async createStudent(
+      @Body() student: Student,
+      @Param('id') batchId: number
+    ) {
+      const batch = await Batch.findOne(batchId)
+      if(!batch) throw new BadRequestError("Batch doesn't exist.")
+  
+      const createdStudent = await Student.create({...student, batch}).save()
+  
+      return createdStudent
+    }
 
   @Delete('/students/:id([0-9]+)')
   async deleteStudent(
@@ -61,7 +69,7 @@ export default class StudentController {
     if(student) {
       student.firstName = update.firstName
       student.lastName = update.lastName
-      student.profilePictureUrl = update.profilePictureUrl
+      student.picture = update.picture
       await student.save()
     }
 

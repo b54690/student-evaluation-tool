@@ -15,45 +15,42 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
 let BatchController = class BatchController {
-    async allBatches() {
-        const batches = await entity_1.Batch.find();
-        if (!batches)
-            throw new routing_controllers_1.NotFoundError('Batches table doesn\'t exist');
-        return batches;
-    }
-    async getBatchById(batchId) {
-        const batchById = await entity_1.Batch.findOne(batchId);
-        if (!batchById)
-            throw new routing_controllers_1.NotFoundError('Batch doesn\'t exist');
-        if (batchById) {
-            return { batchById };
-        }
-    }
     async createBatch(batch) {
-        const entity = await batch.save();
-        return { entity };
+        const createdBatch = await entity_1.Batch.create(batch).save();
+        return createdBatch;
+    }
+    getBatches() {
+        return entity_1.Batch.find();
+    }
+    async getBatch(batchId) {
+        const batch = await entity_1.Batch.findOne(batchId);
+        if (!batch)
+            throw new routing_controllers_1.NotFoundError('Batch does not exist!');
+        return batch;
     }
 };
 __decorate([
-    routing_controllers_1.Get('/batches'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], BatchController.prototype, "allBatches", null);
-__decorate([
-    routing_controllers_1.Get('/batches/:id([0-9]+)'),
-    __param(0, routing_controllers_1.Param('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], BatchController.prototype, "getBatchById", null);
-__decorate([
     routing_controllers_1.Post('/batches'),
+    routing_controllers_1.HttpCode(201),
     __param(0, routing_controllers_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [entity_1.Batch]),
     __metadata("design:returntype", Promise)
 ], BatchController.prototype, "createBatch", null);
+__decorate([
+    routing_controllers_1.Get('/batches'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], BatchController.prototype, "getBatches", null);
+__decorate([
+    routing_controllers_1.Get('/batches/:id([0-9]+)'),
+    routing_controllers_1.HttpCode(200),
+    __param(0, routing_controllers_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], BatchController.prototype, "getBatch", null);
 BatchController = __decorate([
     routing_controllers_1.JsonController()
 ], BatchController);

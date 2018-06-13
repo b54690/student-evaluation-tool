@@ -23,12 +23,13 @@ class BatchForm extends PureComponent {
 
     render() {
 
+
         return(
             <form onSubmit={this.handleSubmit} className="addClassForm">
                 <TextField
                     id='batch'
                     name='batchNumber'
-                    label='Batch Number'
+                    label='Batch ID'
                     value={this.state.batchNumber || ''}
                     onChange={this.handleChange}
                 />
