@@ -17,11 +17,11 @@ const entity_1 = require("./entity");
 const entity_2 = require("../evaluations/entity");
 const entity_3 = require("../batches/entity");
 let StudentController = class StudentController {
-    async allStudents() {
-        const students = await entity_1.Student.find();
-        if (!students)
-            throw new routing_controllers_1.NotFoundError('Students table doesn\'t exist');
-        return { students };
+    async getStudents(batchId) {
+        const batch = await entity_3.Batch.findOne(batchId);
+        if (!batch)
+            throw new routing_controllers_1.NotFoundError('Batch not found!');
+        return batch.students;
     }
     async getStudentById(studentId) {
         const studentById = await entity_1.Student.findOne(studentId);
@@ -33,10 +33,10 @@ let StudentController = class StudentController {
     }
     async createStudent(student, batchId) {
         const batch = await entity_3.Batch.findOne(batchId);
-        if (batch instanceof entity_3.Batch)
-            student.batch = batch;
-        const entity = await student.save();
-        return { entity };
+        if (!batch)
+            throw new routing_controllers_1.BadRequestError("Batch doesn't exist.");
+        const createdStudent = await entity_1.Student.create(Object.assign({}, student, { batch })).save();
+        return createdStudent;
     }
     async deleteStudent(id) {
         const student = await entity_1.Student.findOne(id);
@@ -55,18 +55,20 @@ let StudentController = class StudentController {
         if (student) {
             student.firstName = update.firstName;
             student.lastName = update.lastName;
-            student.profilePictureUrl = update.profilePictureUrl;
+            student.picture = update.picture;
             await student.save();
         }
         return student;
     }
 };
 __decorate([
-    routing_controllers_1.Get('/students'),
+    routing_controllers_1.Get('/batches/:id([0-9]+)/students'),
+    routing_controllers_1.HttpCode(200),
+    __param(0, routing_controllers_1.Param('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], StudentController.prototype, "allStudents", null);
+], StudentController.prototype, "getStudents", null);
 __decorate([
     routing_controllers_1.Get('/students/:id([0-9]+)'),
     __param(0, routing_controllers_1.Param('id')),
@@ -75,9 +77,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "getStudentById", null);
 __decorate([
-    routing_controllers_1.Post('/students'),
+    routing_controllers_1.Post('/batches/:id([0-9]+)/students'),
+    routing_controllers_1.HttpCode(201),
     __param(0, routing_controllers_1.Body()),
-    __param(1, routing_controllers_1.BodyParam('batchId', { required: true })),
+    __param(1, routing_controllers_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [entity_1.Student, Number]),
     __metadata("design:returntype", Promise)

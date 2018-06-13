@@ -2,7 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import { MinLength, IsString } from 'class-validator'
 // import { Type } from 'class-transformer'
-import { Student } from '../students/entity'
+import {Student} from '../students/entity'
+
 
 @Entity()
 export class Batch extends BaseEntity {
@@ -11,7 +12,7 @@ export class Batch extends BaseEntity {
   id?: number
 
   @Column('text', { nullable: false })
-  batchNumber?: Number
+  batchNumber: Number
 
   @Column('date', {nullable:false})
   @MinLength(10)
