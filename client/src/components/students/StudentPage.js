@@ -102,4 +102,4 @@ const mapStateToProps = function (state) {
 	}
 }
 
-export default connect(mapStateToProps, {getStudents}) (StudentsPage);
+export default connect(mapStateToProps, {addStudent, getStudents}) (StudentsPage);
