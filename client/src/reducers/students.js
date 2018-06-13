@@ -10,7 +10,7 @@ export default (state = [], {type, payload}) => {
       return [...state, payload]
 
     case DELETE_STUDENT:
-      return state.filter(student => student.id !== payload.id)
+      return state.filter(student => student.id !== payload)
 
     default:
       return state

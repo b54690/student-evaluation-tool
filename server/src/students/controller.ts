@@ -44,19 +44,17 @@ export default class StudentController {
       return createdStudent
     }
 
-  @Delete('/students/:id([0-9]+)')
-  async deleteStudent(
-    @Param('id') id: number
-  ) {
-    const student = await Student.findOne(id)
-    if (!student) throw new NotFoundError('Student doesn\'t exist')
-    if(student) {
-      const evaluations = await Evaluation.find({student: student})
-      evaluations.map(evaluation => evaluation.remove())
+    @Delete('/students/:id([0-9]+)')
+    async deleteStudent(
+      @Param('id') studentId: number
+    ) {
+      const student = await Student.findOne(studentId)
+      if(!student) throw new NotFoundError('Student not found.')
+  
       await student.remove()
+
+      return { id: studentId }
     }
-    return 'successfully deleted'
-  }
 
   @Patch('/students/:id([0-9]+)')
   async updateStudent(

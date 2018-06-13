@@ -14,11 +14,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
-const entity_2 = require("../evaluations/entity");
-const entity_3 = require("../batches/entity");
+const entity_2 = require("../batches/entity");
 let StudentController = class StudentController {
     async getStudents(batchId) {
-        const batch = await entity_3.Batch.findOne(batchId);
+        const batch = await entity_2.Batch.findOne(batchId);
         if (!batch)
             throw new routing_controllers_1.NotFoundError('Batch not found!');
         return batch.students;
@@ -32,22 +31,18 @@ let StudentController = class StudentController {
         }
     }
     async createStudent(student, batchId) {
-        const batch = await entity_3.Batch.findOne(batchId);
+        const batch = await entity_2.Batch.findOne(batchId);
         if (!batch)
             throw new routing_controllers_1.BadRequestError("Batch doesn't exist.");
         const createdStudent = await entity_1.Student.create(Object.assign({}, student, { batch })).save();
         return createdStudent;
     }
-    async deleteStudent(id) {
-        const student = await entity_1.Student.findOne(id);
+    async deleteStudent(studentId) {
+        const student = await entity_1.Student.findOne(studentId);
         if (!student)
-            throw new routing_controllers_1.NotFoundError('Student doesn\'t exist');
-        if (student) {
-            const evaluations = await entity_2.Evaluation.find({ student: student });
-            evaluations.map(evaluation => evaluation.remove());
-            await student.remove();
-        }
-        return 'successfully deleted';
+            throw new routing_controllers_1.NotFoundError('Student not found.');
+        await student.remove();
+        return { id: studentId };
     }
     async updateStudent(studentId, update) {
         let student = await entity_1.Student.findOne(studentId);

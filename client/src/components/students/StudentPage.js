@@ -75,14 +75,14 @@ class StudentsPage extends PureComponent {
                         onChange={this.handleChange}
                         style={{margin: 10}}
                         />   
-                            <Button
-                                type='submit'
-                                color="secondary"
-                                variant="raised"
-                                className="create-student"
-                                >
-                                Create Student
-                            </Button>
+                    <Button
+                        type='submit'
+                        color="secondary"
+                        variant="raised"
+                        className="create-student"
+                        >
+                        Create Student
+                    </Button>
                 </form>
                           {/* <PercentageBar/>
 
@@ -102,4 +102,4 @@ const mapStateToProps = function (state) {
 	}
 }
 
-export default connect(mapStateToProps, {getStudents}) (StudentsPage);
+export default connect(mapStateToProps, {addStudent, getStudents}) (StudentsPage);
