@@ -5,9 +5,9 @@ import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid';
 import InfoOutline from '@material-ui/icons/InfoOutline'
-// import DeleteOutline from '@material-ui/icons/Delete'
+import DeleteOutline from '@material-ui/icons/Delete'
 // import './students.css'
-import { getStudents } from '../../actions/students'
+import { getStudents, deleteStudent } from '../../actions/students'
 // import { bindActionCreators } from 'redux'
 import {Link} from 'react-router-dom'
   
@@ -17,9 +17,9 @@ class StudentsList extends PureComponent {
     //     batchId: Number((window.location.href).split('/').pop())
     // }
 
-    //deleteStudent = (studentId) => {
-    //    this.props.deleteStudent(studentId)
-     // }
+    deleteStudent = (studentId) => {
+       this.props.deleteStudent(studentId)
+     }
 
     // componentWillMount() {
     //     this.props.getStudents(this.state.batchId);
@@ -58,13 +58,13 @@ class StudentsList extends PureComponent {
                             <InfoOutline/>
                     </Button> 
                     </Link>
-                    {/* <Button
+                    <Button
                         size="small"
                         variant="raised"
                         onClick={ () => this.deleteStudent(student.id) }
                     > 
                     <DeleteOutline/>
-                    </Button> */}
+                    </Button>
                 </CardActions>
             </Card>
         </Grid>
@@ -89,4 +89,4 @@ const mapStateToProps = function (state) {
         students: state.students,
 }}
 
-export default connect(mapStateToProps)(StudentsList)
+export default connect(mapStateToProps, {deleteStudent})(StudentsList)
