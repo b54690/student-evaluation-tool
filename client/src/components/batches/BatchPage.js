@@ -23,13 +23,13 @@ class BatchesList extends PureComponent {
 renderBatch = (batch, index) => {
 
     return (
-        <Grid item xs={12} sm={3} key={index}>
-            <Card className="batch-card">
+        <Grid>
+            <Card>
             <CardContent>
-                <Typography variant="headline" component="h2">
+                <Typography>
                     BATCH {batch.batchNumber}
                 </Typography>
-                <Typography component="p">
+                <Typography>
                     Start date: {batch.startDate}<br />
                     End date: {batch.endDate}
                 </Typography>
@@ -37,7 +37,7 @@ renderBatch = (batch, index) => {
                 <CardActions>
                     <Link to={`/batches/${batch.id}`} style={{textDecoration: 'none'}}>
                     <Button
-                        size="small"
+                        size="large"
                         color="secondary"
                         variant="raised"
                     >
@@ -59,7 +59,7 @@ renderBatch = (batch, index) => {
         return(
             <Paper className="outer-paper">
             <h2>Add a new batch</h2>
-            <p>Date MM/DD/YYYY format</p>
+            <p>Date YYYY-MM-DD format</p>
             <BatchForm />
             <h2>All Batches</h2>
             <Grid container spacing={24}>
