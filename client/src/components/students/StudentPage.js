@@ -46,9 +46,6 @@ class StudentsPage extends PureComponent {
                         id='student'
                         label='Student Firstname'
                         name='firstName'
-                        InputLabelProps={{
-                            shrink: true,
-                          }}
                         value={this.state.firstName || ''}
                         onChange={this.handleChange}
                         style={{margin: 10}}
@@ -57,9 +54,6 @@ class StudentsPage extends PureComponent {
                         id='student'
                         label='Student Lastname'
                         name='lastName'
-                        InputLabelProps={{
-                            shrink: true,
-                          }}
                         value={this.state.lastName || ''}
                         onChange={this.handleChange}
                         style={{margin: 10}}
@@ -68,9 +62,6 @@ class StudentsPage extends PureComponent {
                         id='picture'
                         label='Picture URL'
                         name='picture'
-                        InputLabelProps={{
-                            shrink: true,
-                          }}
                         value={this.state.picture || ''}
                         onChange={this.handleChange}
                         style={{margin: 10}}

@@ -1,6 +1,6 @@
-import { JsonController, Get, Post, Delete, Patch, Param, Body, BodyParam, BadRequestError, NotFoundError, HttpCode } from 'routing-controllers'
+import { JsonController, Get, Post, Delete, Put, Param, Body, BodyParam, BadRequestError, NotFoundError, HttpCode } from 'routing-controllers'
 import { Student } from './entity'
-import { Evaluation } from '../evaluations/entity'
+// import { Evaluation } from '../evaluations/entity'
 import  {Batch} from '../batches/entity'
 
 @JsonController()
@@ -56,21 +56,16 @@ export default class StudentController {
       return { id: studentId }
     }
 
-  @Patch('/students/:id([0-9]+)')
-  async updateStudent(
-    @Param('id') studentId: number,
-    @Body() update
-  ) {
-    let student = await Student.findOne(studentId)
-    console.log(studentId)
-
-    if(student) {
-      student.firstName = update.firstName
-      student.lastName = update.lastName
-      student.picture = update.picture
-      await student.save()
+    @Put('/students/:id')
+    async updateStudent(
+        @Param('id') studentId: number,
+        @Body() update: Partial<Student> 
+    ) {
+        const student = await Student.findOne(studentId)
+        if (!student) throw new NotFoundError('Student was not found')
+        const studentUpdated = Student.merge(student, update)
+        const entity = await studentUpdated.save()
+        return entity
     }
 
-    return student
-  }
 }

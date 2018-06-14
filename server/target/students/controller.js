@@ -45,15 +45,12 @@ let StudentController = class StudentController {
         return { id: studentId };
     }
     async updateStudent(studentId, update) {
-        let student = await entity_1.Student.findOne(studentId);
-        console.log(studentId);
-        if (student) {
-            student.firstName = update.firstName;
-            student.lastName = update.lastName;
-            student.picture = update.picture;
-            await student.save();
-        }
-        return student;
+        const student = await entity_1.Student.findOne(studentId);
+        if (!student)
+            throw new routing_controllers_1.NotFoundError('Student was not found');
+        const studentUpdated = entity_1.Student.merge(student, update);
+        const entity = await studentUpdated.save();
+        return entity;
     }
 };
 __decorate([
@@ -88,7 +85,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "deleteStudent", null);
 __decorate([
-    routing_controllers_1.Patch('/students/:id([0-9]+)'),
+    routing_controllers_1.Put('/students/:id'),
     __param(0, routing_controllers_1.Param('id')),
     __param(1, routing_controllers_1.Body()),
     __metadata("design:type", Function),
