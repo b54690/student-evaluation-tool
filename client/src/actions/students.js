@@ -10,7 +10,7 @@ export const DELETE_STUDENT = 'DELETE_STUDENT'
 export const GET_STUDENT = 'GET_STUDENT'
 
 export const getStudent = (StudentId) => (dispatch, getState) => {
-  // const state = getState()
+  const state = getState()
 //   const jwt = state.currentUser.jwt
    
   request

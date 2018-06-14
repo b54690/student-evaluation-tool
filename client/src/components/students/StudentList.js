@@ -4,9 +4,7 @@ import Card, {CardActions, CardContent, CardMedia} from 'material-ui/Card';
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid';
-// import './students.css'
 import { getStudents, deleteStudent } from '../../actions/students'
-// import { bindActionCreators } from 'redux'
 import {Link} from 'react-router-dom'
   
 class StudentsList extends PureComponent {
@@ -16,12 +14,7 @@ class StudentsList extends PureComponent {
        this.props.deleteStudent(studentId)
      }
 
-
     renderStudent = (student, index) => {
-        // let evalutionImage = '/placeholder2.png'
-        // if(student.evaluations && student.evaluations.length > 0){
-        //     evalutionImage = `/notebook-${student.evaluations[0].color}.png`
-        // 
     
         return (
         <Grid item key={index}>
@@ -35,7 +28,6 @@ class StudentsList extends PureComponent {
             <CardContent>
                 <Typography variant="headline" component="h2">
                     {student.firstName} {student.lastName} <br/>
-                 {/* <img src={evalutionImage} alt=" " /> */}
                 </Typography>
             </CardContent>
                 <CardActions>

@@ -19,7 +19,7 @@ export default class StudentController {
     }
 
   @Get('/students/:id([0-9]+)')
-  async getStudentById(
+  async getStudent(
     @Param('id') studentId: number
   ) {
     const studentById = await Student.findOne(studentId)
