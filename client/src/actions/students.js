@@ -25,7 +25,7 @@ export const getStudent = (StudentId) => (dispatch, getState) => {
   
   }
 
-  export const updateStudent = (StudentId, updates) => (dispatch, getState) => {
+  export const updateStudent = (StudentId, updates) => (dispatch) => {
     // const state = getState()
     // const jwt = state.currentUser.jwt
 
@@ -39,7 +39,6 @@ export const getStudent = (StudentId) => (dispatch, getState) => {
         payload: response.body
       })})
     .catch(err => console.log(err))
-
 }
   
   export const getStudents = (batchId) => (dispatch, getState) => {
