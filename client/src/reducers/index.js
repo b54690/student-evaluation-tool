@@ -5,6 +5,7 @@ import teachers from './teachers'
 import batches from './batches'
 import students from './students'
 import evaluations from './evaluations'
+import student from './student'
 
 
 export default {
@@ -14,5 +15,6 @@ export default {
   teachers,
   batches,
   students,
-  evaluations
+  evaluations,
+  student
 }

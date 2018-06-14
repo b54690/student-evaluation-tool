@@ -22,7 +22,7 @@ let StudentController = class StudentController {
             throw new routing_controllers_1.NotFoundError('Batch not found!');
         return batch.students;
     }
-    async getStudentById(studentId) {
+    async getStudent(studentId) {
         const studentById = await entity_1.Student.findOne(studentId);
         if (!studentById)
             throw new routing_controllers_1.NotFoundError('Student doesn\'t exist');
@@ -67,7 +67,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], StudentController.prototype, "getStudentById", null);
+], StudentController.prototype, "getStudent", null);
 __decorate([
     routing_controllers_1.Post('/batches/:id([0-9]+)/students'),
     routing_controllers_1.HttpCode(201),
