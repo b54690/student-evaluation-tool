@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
 import StudentEditForm from './StudentEditForm'
+import EvaluationForm from './EvaluationForm'
 
 class EvaluationPage extends PureComponent {
 
@@ -16,12 +17,12 @@ class EvaluationPage extends PureComponent {
   }
 
     //tracks whether or not the user is editing by giving the 
-    //component an internal state with a property isEditing. We'll toggle the value of this 
+    //component an internal state with a property isEditing. Toggle the value of this 
     //property with the click of an "edit" button.
   
     toggleEdit = () => {
       this.setState({
-        isEditing: !this.state.edit
+        edit: !this.state.edit
       })
   }
   
@@ -43,7 +44,7 @@ class EvaluationPage extends PureComponent {
         return(
           <Paper>
           <div>
-              <StudentEditForm initialValues={student} onSubmit={this.updateStudent} />   
+            <StudentEditForm initialValues={student} onSubmit={this.updateStudent} />   
           </div>
           <div>
           <img src={student.picture} 
@@ -51,7 +52,7 @@ class EvaluationPage extends PureComponent {
             <CardMedia
                     title='Photo'
                     image={student.picture || 'student.placeholer'} 
-                    style={{ width: 300, height: 25,paddingTop: '100%'}}
+                    style={{ width: 5, height: 5,paddingTop: '10%'}}
                 />
             <CardContent>
                 <Typography>
@@ -59,7 +60,9 @@ class EvaluationPage extends PureComponent {
                 </Typography>
             </CardContent>
           </div>
+          <EvaluationForm />
           </Paper>
+
         )
       }
     
@@ -68,7 +71,7 @@ class EvaluationPage extends PureComponent {
     const mapStateToProps = function (state) {
         return {
             student: state.student
-            
+
         }
     }
     

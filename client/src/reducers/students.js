@@ -1,4 +1,4 @@
-import {ADD_STUDENT, UPDATE_STUDENT, GET_STUDENTS, DELETE_STUDENT} from '../actions/students'
+import {DELETE_STUDENT, ADD_STUDENT, UPDATE_STUDENT, GET_STUDENTS} from '../actions/students'
 
 export default (state = [], {type, payload}) => {
   switch (type) {

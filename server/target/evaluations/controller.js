@@ -15,57 +15,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
 const entity_2 = require("../students/entity");
-const entity_3 = require("../teachers/entity");
 let EvaluationController = class EvaluationController {
-    async getEvaluationById(evaluationId) {
-        const evaluationById = await entity_1.Evaluation.findOne(evaluationId);
-        if (!evaluationById)
-            throw new routing_controllers_1.NotFoundError('Evaluation doesn\'t exist');
-        if (evaluationById) {
-            return { evaluationById };
-        }
-    }
-    async createEvaluation(evaluation, studentId, teacherId) {
+    async createEvaluation(evaluation, studentId) {
         const student = await entity_2.Student.findOne(studentId);
-        if (student instanceof entity_2.Student)
-            evaluation.student = student;
-        const teacher = await entity_3.Teacher.findOne(teacherId);
-        if (teacher instanceof entity_3.Teacher)
-            evaluation.teacher = teacher;
-        const entity = await evaluation.save();
-        return { entity };
-    }
-    async updateEvaluation(evaluationId, update) {
-        let evaluation = await entity_1.Evaluation.findOne(evaluationId);
-        evaluation = update;
-        if (evaluation)
-            return evaluation.save();
+        if (!student)
+            throw new routing_controllers_1.NotFoundError('Student does not exist');
+        const createdEvaluation = await entity_1.Evaluation.create(Object.assign({}, evaluation, { student })).save();
+        return createdEvaluation;
     }
 };
 __decorate([
-    routing_controllers_1.Get('/evaluations/:id([0-9]+)'),
-    __param(0, routing_controllers_1.Param('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], EvaluationController.prototype, "getEvaluationById", null);
-__decorate([
-    routing_controllers_1.Post('/evaluations'),
+    routing_controllers_1.Post('/students/:id([0-9]+)/evaluations'),
     __param(0, routing_controllers_1.Body()),
-    __param(1, routing_controllers_1.BodyParam('studentId', { required: true })),
-    __param(2, routing_controllers_1.BodyParam('teacherId', { required: true })),
+    __param(1, routing_controllers_1.Param('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [entity_1.Evaluation, Number, Number]),
+    __metadata("design:paramtypes", [entity_1.Evaluation, Number]),
     __metadata("design:returntype", Promise)
 ], EvaluationController.prototype, "createEvaluation", null);
-__decorate([
-    routing_controllers_1.Patch('/evaluations/:id([0-9]+)'),
-    __param(0, routing_controllers_1.Param('id')),
-    __param(1, routing_controllers_1.Body()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Object]),
-    __metadata("design:returntype", Promise)
-], EvaluationController.prototype, "updateEvaluation", null);
 EvaluationController = __decorate([
     routing_controllers_1.JsonController()
 ], EvaluationController);

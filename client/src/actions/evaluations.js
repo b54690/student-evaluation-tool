@@ -7,7 +7,7 @@ export const ADD_EVALUATION = 'ADD_EVALUATION'
 export const GET_EVALUATIONS = 'GET_EVALUATIONS'
 
 
-export const createEvaluation = (evaluation) => (dispatch, getState) => {
+export const addEvaluation = (evaluation) => (dispatch, getState) => {
     // const state = getState()
     // const jwt = state.currentUser.jwt
 
@@ -24,19 +24,4 @@ export const createEvaluation = (evaluation) => (dispatch, getState) => {
       .catch(err => console.error(err))
   }
 
-  export const getEvaluations = (studentId) => (dispatch, getState) => {
-    // const state = getState()
-    // const jwt = state.currentUser.jwt
-  
-    request
-      .get(`${baseUrl}/students/${studentId}/evaluations`)
-    //   .set('Authorization', `Bearer ${jwt}`)
-      .then(response => {
-        dispatch({
-          type: GET_EVALUATIONS,
-          payload: response.body
-        })
-      })
-      .catch(err => console.error(err))
-  }
 
