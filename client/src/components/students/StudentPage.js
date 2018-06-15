@@ -7,6 +7,8 @@ import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField'
 import {addStudent, getStudents} from '../../actions/students'
+import EvaluationStatus from './EvaluationStatus';
+import RandomQuestions from './RandomStudent'
 // import './students.css'
 
 
@@ -36,7 +38,7 @@ class StudentsPage extends PureComponent {
 
 
     render() {
-        // const {students} = this.props
+        const {students} = this.props
         // console.log(this.props)
 
         return(
@@ -75,9 +77,9 @@ class StudentsPage extends PureComponent {
                         Create Student
                     </Button>
                 </form>
-                          {/* <PercentageBar/>
 
-                    <AskQButton/> */}
+
+                    <RandomQuestions/><br></br>
 
                 <StudentsList/>
 
