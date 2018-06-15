@@ -17,7 +17,7 @@ class EvaluationPage extends PureComponent {
   }
 
     //tracks whether or not the user is editing by giving the 
-    //component an internal state with a property isEditing. Toggle the value of this 
+    //component an internal state with a property edit. Toggle the value of this 
     //property with the click of an "edit" button.
   
     toggleEdit = () => {
@@ -47,8 +47,8 @@ class EvaluationPage extends PureComponent {
             <StudentEditForm initialValues={student} onSubmit={this.updateStudent} />   
           </div>
           <div>
-          <img src={student.picture} 
-              alt="student" width='200'/>
+          {/* <img src={student.picture} 
+              alt="student" width='200'/> */}
             <CardMedia
                     title='Photo'
                     image={student.picture || 'student.placeholer'} 
@@ -65,13 +65,11 @@ class EvaluationPage extends PureComponent {
 
         )
       }
-    
     }
     
     const mapStateToProps = function (state) {
         return {
             student: state.student
-
         }
     }
     

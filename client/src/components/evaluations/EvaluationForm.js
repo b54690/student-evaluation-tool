@@ -29,8 +29,6 @@ class EvaluationForm extends PureComponent {
     handleChange = (e) => {
         const {name, value} = e.target
 
-        
-
 
         this.setState({
           [name] : value
@@ -89,8 +87,6 @@ class EvaluationForm extends PureComponent {
                             variant="raised" 
                             className="question-action"
                             color="secondary"
-                            onClick={() => (window.location.href).split('/')(+1)}
-                            
                         > 
                         Next Student
                         </Button>

@@ -1,7 +1,5 @@
 import * as request from 'superagent'
 import {baseUrl} from '../constants'
-// import {logout} from './teachers'
-// import {isExpired} from '../jwt'
 
 export const ADD_STUDENT = 'ADD_STUDENT'
 export const GET_STUDENTS = 'GET_STUDENTS'
@@ -10,12 +8,9 @@ export const DELETE_STUDENT = 'DELETE_STUDENT'
 export const GET_STUDENT = 'GET_STUDENT'
 
 export const getStudent = (StudentId) => (dispatch, getState) => {
-  const state = getState()
-//   const jwt = state.currentUser.jwt
    
   request
     .get(`${baseUrl}/students/${StudentId}`)
-    // .set('Authorization', `Bearer ${jwt}`)
     .then(response => {
       dispatch({
         type: GET_STUDENT,
@@ -26,12 +21,9 @@ export const getStudent = (StudentId) => (dispatch, getState) => {
   }
 
   export const updateStudent = (StudentId, updates) => (dispatch) => {
-    // const state = getState()
-    // const jwt = state.currentUser.jwt
 
     request
     .put(`${baseUrl}/students/${StudentId}`)
-//    .set('Authorization', `Bearer ${jwt}`)
     .send(updates)
     .then(response => {
       dispatch({
@@ -42,12 +34,9 @@ export const getStudent = (StudentId) => (dispatch, getState) => {
 }
   
   export const getStudents = (batchId) => (dispatch, getState) => {
-    // const state = getState()
-    // const jwt = state.currentUser.jwt
 
     request
       .get(`${baseUrl}/batches/${batchId}/students`)
-    //   .set('Authorization', `Bearer ${jwt}`)
       .then(response => dispatch({
           type: GET_STUDENTS,
           payload: response.body
@@ -56,14 +45,9 @@ export const getStudent = (StudentId) => (dispatch, getState) => {
   }
 
   export const addStudent = (student) => (dispatch, getState) => {
-    // const state = getState()
-    // const jwt = state.currentUser.jwt
-
-    // if (isExpired(jwt)) return dispatch(logout())
     
     request
       .post(`${baseUrl}/batches/${student.batchId}/students`)
-    //   .set('Authorization', `Bearer ${jwt}`)
       .send(student)
       .then(response => dispatch({
           type: ADD_STUDENT,
@@ -73,14 +57,9 @@ export const getStudent = (StudentId) => (dispatch, getState) => {
   }
 
   export const deleteStudent = (studentId) => (dispatch, getState) => {
-    // const state = getState()
-    // const jwt = state.currentUser.jwt
-  
-//    if (isExpired(jwt)) return dispatch(logout())
-    
+
     request
     .delete(`${baseUrl}/students/${studentId}`)
-    // .set('Authorization', `Bearer ${jwt}`)
     .then(response => dispatch({
       type: DELETE_STUDENT,
       payload: response.body

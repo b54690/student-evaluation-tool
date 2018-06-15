@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import Button from 'material-ui/Button';
 import colorsArray from 'constants'
-// import './students.css'
 
 class RandomStudentSelector extends PureComponent {
     
@@ -19,7 +18,7 @@ class RandomStudentSelector extends PureComponent {
 
         let chosenStudent = randomStudent[Math.floor(Math.random()*randomStudent.length)]
 
-        //selects a student
+        //selects a student 
     
         alert(`Student selected for Random Question: ${chosenStudent.firstName} ${chosenStudent.lastName}`)
         }
