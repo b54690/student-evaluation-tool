@@ -1,13 +1,11 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import StudentsList from './StudentList'
-// import PercentageBar from './PercentageBar'
-// import AskQButton from './AskQButton'
 import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField'
 import {addStudent, getStudents} from '../../actions/students'
-// import './students.css'
+import RandomQuestions from './RandomStudent'
 
 
 class StudentsPage extends PureComponent {
@@ -36,8 +34,7 @@ class StudentsPage extends PureComponent {
 
 
     render() {
-        // const {students} = this.props
-        // console.log(this.props)
+
 
         return(
             <Paper className="outer-paper">
@@ -75,9 +72,9 @@ class StudentsPage extends PureComponent {
                         Create Student
                     </Button>
                 </form>
-                          {/* <PercentageBar/>
 
-                    <AskQButton/> */}
+
+                    <RandomQuestions/>
 
                 <StudentsList/>
 

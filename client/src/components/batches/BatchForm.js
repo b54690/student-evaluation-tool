@@ -25,7 +25,7 @@ class BatchForm extends PureComponent {
 
 
         return(
-            <form onSubmit={this.handleSubmit} className="addClassForm">
+            <form onSubmit={this.handleSubmit} className="addBatch">
                 <TextField
                     id='batch'
                     name='batchNumber'

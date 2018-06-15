@@ -39,7 +39,7 @@ class EvaluationForm extends PureComponent {
         const initialValues = this.props.initialValues || {}
 
         return(
-            <Card className='evaform'>
+            <Card>
                 <form onSubmit={this.handleSubmit}>
                 Date MM/DD/YYYY format<br></br>
                     <TextField
@@ -79,9 +79,16 @@ class EvaluationForm extends PureComponent {
                             variant="raised" 
                             className="question-action"
                             color="secondary"
-                            onClick={window.history.go(1)}
                         > 
                         Submit 
+                        </Button>
+                        <Button 
+                            type='submit'
+                            variant="raised" 
+                            className="question-action"
+                            color="secondary"
+                        > 
+                        Next Student
                         </Button>
                     </CardActions>
 
