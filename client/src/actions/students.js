@@ -51,7 +51,7 @@ export const getStudent = (StudentId) => (dispatch, getState) => {
       .send(student)
       .then(response => dispatch({
           type: ADD_STUDENT,
-          payload: student
+          payload: response.body
       }))
       .catch(err => console.error(err))
   }

@@ -27,7 +27,7 @@ let StudentController = class StudentController {
         if (!studentById)
             throw new routing_controllers_1.NotFoundError('Student doesn\'t exist');
         if (studentById) {
-            return { studentById };
+            return studentById;
         }
     }
     async createStudent(student, batchId) {

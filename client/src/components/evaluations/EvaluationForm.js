@@ -15,6 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
+
 class EvaluationForm extends PureComponent {
     state = {
         studentId: Number((window.location.href).split('/').pop())
@@ -24,8 +25,7 @@ class EvaluationForm extends PureComponent {
         event.preventDefault()
         this.props.addEvaluation(this.state) 
     }
-    
-
+      
     handleChange = (e) => {
         const {name, value} = e.target
 
@@ -41,22 +41,15 @@ class EvaluationForm extends PureComponent {
         return(
             <Card>
                 <form onSubmit={this.handleSubmit}>
-                Date MM/DD/YYYY format<br></br>
                     <TextField
                         id='Date'
                         name='Date'
                         label='Evaluation Date'
                         value={this.state.Date || ''}
                         onChange={this.handleChange}
+                        style={{margin: 15}}
                     /><br/>
-                    <TextField
-                        id='Remark'
-                        label='Remark'
-                        name='Remark'
-                        value={this.state.Remark || initialValues.Remark || ''}
-                        onChange={this.handleChange}
-                    /> <br/>
-                    <FormControl >
+                    <FormControl style={{margin: 15}}>
                     <InputLabel htmlFor="age-native-simple">Evaluation</InputLabel>
                     <Select
                         native
@@ -73,6 +66,14 @@ class EvaluationForm extends PureComponent {
                         <option value="Red">Red</option>
                     </Select>
                     </FormControl>
+                    <TextField fullWidth
+                        id='Remark'
+                        label='Remark'
+                        name='Remark'
+                        value={this.state.Remark || initialValues.Remark || ''}
+                        onChange={this.handleChange}
+                        style={{margin: 15}}
+                    /> <br/>
                     <CardActions>
                         <Button 
                             type='submit'
@@ -80,7 +81,7 @@ class EvaluationForm extends PureComponent {
                             className="question-action"
                             color="secondary"
                         > 
-                        Submit 
+                        Submit evaluation
                         </Button>
                         <Button 
                             type='submit'
