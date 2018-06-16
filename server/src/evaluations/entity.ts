@@ -21,7 +21,7 @@ export class Evaluation extends BaseEntity {
     @Column('text')
     Evaluation: string
   
-    @ManyToOne(_ => Student, student => student.evaluations)
+    @ManyToOne(_ => Student, student => student.evaluations, { onDelete: 'CASCADE' })
     student: Student
   
     @ManyToOne(_ => Teacher, teacher => teacher.evaluations, {eager: true})
