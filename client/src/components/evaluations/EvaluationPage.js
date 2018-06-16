@@ -25,12 +25,14 @@ class EvaluationPage extends PureComponent {
         edit: !this.state.edit
       })
   }
+
+  updateStudent = (student) => {
+    this.props.updateStudent(this.state.studentId, student)
+    this.toggleEdit()
+}
   
-    updateStudent = (student) => {
-      this.props.updateStudent(this.state.studentId, student)
-      this.toggleEdit()
-  }
   
+
      componentWillMount() {
       this.props.getStudent(this.state.studentId)
      }
@@ -39,7 +41,8 @@ class EvaluationPage extends PureComponent {
      render() {
         const {student} = this.props
 
-        console.log(this.props)
+        console.log(student.studentById)
+        console.log("hello")
        
         return(
           <Paper>
@@ -49,20 +52,20 @@ class EvaluationPage extends PureComponent {
           <div>
           {/* <img src={student.picture} 
               alt="student" width='200'/> */}
-            <CardMedia
-                    title='Photo'
-                    image={student.picture || 'student.placeholer'} 
-                    style={{ width: 5, height: 5,paddingTop: '10%'}}
-                />
             <CardContent>
-                <Typography>
-                    {student.firstName} {student.lastName}
-                </Typography>
+            <Typography variant="headline" component="h2">
+                {student.firstName} {student.lastName} <br/>
+            </Typography>
+            <CardMedia
+                className='media'
+                title='Photo'
+                image= {student.picture}
+                style={{ width: 100, height: 40, paddingLeft: '5%', paddingTop: '10%'}}
+            />
             </CardContent>
           </div>
           <EvaluationForm />
           </Paper>
-
         )
       }
     }

@@ -71,10 +71,7 @@ class StudentsPage extends PureComponent {
                         >
                         Create Student
                     </Button>
-                </form>
-
-
-                    <RandomQuestions/>
+                </form><RandomQuestions/>
 
                 <StudentsList/>
 

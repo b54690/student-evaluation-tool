@@ -2,16 +2,21 @@ import React, {PureComponent} from 'react'
 import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField'
+import { updateStudent } from '../../actions/students'
+import { connect } from 'react-redux'
 
 
 class StudentEditForm extends PureComponent {
     
-    state = {}
+    state = {
+        studentId: Number((window.location.href).split('/').pop()),
+        edit: false
+    }
 
 	handleSubmit = (event) => {
 		event.preventDefault()
 		this.props.onSubmit(this.state)
-	}
+    }
 
 	handleChange = (event) => {
     const {name, value} = event.target
@@ -33,7 +38,7 @@ render() {
                     name='firstName'
                     value={this.state.firstName || initialValues.firstName || ''}
                     onChange={this.handleChange}
-                    style={{margin: 10}}
+                    style={{margin: 15}}
                     />
                 <TextField
                     id='student'
@@ -65,5 +70,11 @@ render() {
     }
 }
 
+const mapStateToProps = function (state) {
+	return {
+        students: state.students,
+	}
+}
 
-export default StudentEditForm
+export default connect(mapStateToProps, {updateStudent}) (StudentEditForm);
+

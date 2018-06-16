@@ -36,6 +36,9 @@ class StudentsList extends PureComponent {
                 <Typography variant="headline" component="h2">
                     {student.firstName} {student.lastName} <br/>
                 </Typography>
+                <Typography variant="sub-headline" component="p">
+                    {student.firstName} {student.lastName} <br/>
+                </Typography>
                 <CardMedia
                     className='media'
                     title='Photo'

@@ -25,7 +25,7 @@ export default class StudentController {
     const studentById = await Student.findOne(studentId)
     if (!studentById) throw new NotFoundError('Student doesn\'t exist')
     if (studentById) {
-      return {studentById}
+      return studentById
     }
   }
 
