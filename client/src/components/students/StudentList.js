@@ -13,11 +13,19 @@ class StudentsList extends PureComponent {
         batchId: Number((window.location.href).split('/').pop())
     }
 
+    componentWillMount() {
+        this.props.getStudents(this.state.batchId);
+       }
+
+    getStudents = (batchId) => {
+        this.props.getStudents(this.state.batchId);
+       }
+
 
     deleteStudent = (studentId) => {
-       this.props.deleteStudent(studentId)
-     }
-     
+        this.props.deleteStudent(studentId)
+      }
+    
 
     renderStudent = (student, index) => {
     
@@ -54,7 +62,7 @@ class StudentsList extends PureComponent {
                         className="info-student"
                         size="small"
                         variant="raised"
-                        onClick={() => this.deleteStudent(student.id) }
+                        onClick={() => this.deleteStudent(student.id)}
                     >
                         DELETE
                     </Button>
@@ -82,4 +90,4 @@ const mapStateToProps = function (state) {
         students: state.students,
 }}
 
-export default connect(mapStateToProps, {deleteStudent})(StudentsList)
+export default connect(mapStateToProps, {getStudents, deleteStudent})(StudentsList)
