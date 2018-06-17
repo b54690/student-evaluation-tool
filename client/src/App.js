@@ -7,6 +7,7 @@ import TopBar from './components/layout/TopBar'
 import BatchesList from './components/batches/BatchPage'
 import EvaluationPage from './components/evaluations/EvaluationPage'
 import StudentsList from './components/students/StudentPage';
+import EvaluationsHistory from './components/evaluations/EvaluationsHistory';
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path="/batches" component={BatchesList} />
             <Route exact path="/batches/:id" component={StudentsList} />
             <Route exact path="/students/:id" component={EvaluationPage} />
+            <Route exact path="/students/:id/evaluations" component={EvaluationsHistory} />
           </main>
         </div>
       </Router>

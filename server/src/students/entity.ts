@@ -4,6 +4,7 @@ import { IsString } from 'class-validator'
 import {Batch} from '../batches/entity'
 import { Evaluation } from '../evaluations/entity'
 
+
 @Entity()
 export class Student extends BaseEntity {
 

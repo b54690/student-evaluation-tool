@@ -16,7 +16,6 @@ class StudentsPage extends PureComponent {
 
     componentWillMount() {
         this.props.getStudents(this.state.batchId);
-        console.log(this.props)
        }
     
     handleSubmit = (e) => {

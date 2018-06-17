@@ -23,6 +23,12 @@ let EvaluationController = class EvaluationController {
         const createdEvaluation = await entity_1.Evaluation.create(Object.assign({}, evaluation, { student })).save();
         return createdEvaluation;
     }
+    async getEvaluations(studentId) {
+        const student = await entity_2.Student.findOne(studentId);
+        if (!student)
+            throw new routing_controllers_1.NotFoundError('Evaluation not found!');
+        return student.evaluations;
+    }
 };
 __decorate([
     routing_controllers_1.Post('/students/:id([0-9]+)/evaluations'),
@@ -32,6 +38,13 @@ __decorate([
     __metadata("design:paramtypes", [entity_1.Evaluation, Number]),
     __metadata("design:returntype", Promise)
 ], EvaluationController.prototype, "createEvaluation", null);
+__decorate([
+    routing_controllers_1.Get('/students/:id([0-9]+)/evaluations'),
+    __param(0, routing_controllers_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], EvaluationController.prototype, "getEvaluations", null);
 EvaluationController = __decorate([
     routing_controllers_1.JsonController()
 ], EvaluationController);
