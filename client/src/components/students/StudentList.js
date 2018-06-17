@@ -27,7 +27,7 @@ class StudentsList extends PureComponent {
       }
     
 
-    renderStudent = (student, index) => {
+    renderStudent = (student, evaluation, index) => {
     
         return (
         <Grid item key={index}>
@@ -37,7 +37,7 @@ class StudentsList extends PureComponent {
                     {student.firstName} {student.lastName} <br/>
                 </Typography>
                 <Typography variant="sub-headline" component="p">
-                    {student.firstName} {student.lastName} <br/>
+                    {evaluation.Evaluation}  <br/>
                 </Typography>
                 <CardMedia
                     className='media'
@@ -75,9 +75,9 @@ class StudentsList extends PureComponent {
     )}
 
     render() {
-        const {students} = this.props
+        const {students, evaluations} = this.props
         
-        console.log(this.props)
+        
 
         return(
             <Grid container spacing={0}>

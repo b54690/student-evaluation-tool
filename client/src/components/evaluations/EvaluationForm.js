@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import Card, { CardActions } from 'material-ui/Card';
+import {Link} from 'react-router-dom'
 import Button from 'material-ui/Button'
 import Radio from 'material-ui/Radio';
 import TextField from 'material-ui/TextField'
@@ -28,15 +29,20 @@ class EvaluationForm extends PureComponent {
       
     handleChange = (e) => {
         const {name, value} = e.target
+        const { evaluations } = this.props
 
-
-        this.setState({
-          [name] : value
-        })
-      };
+        if (evaluations.find(evaluation => evaluation.Date === value)) {
+            alert ('Evaluation already posted for this date')}
+            else {
+                this.setState({
+                    [name]: value,
+                })
+            }
+    }
 
     render() {
         const initialValues = this.props.initialValues || {}
+        const {student} = this.props
 
         return(
             <Card>
@@ -47,9 +53,9 @@ class EvaluationForm extends PureComponent {
                         label='Evaluation Date'
                         value={this.state.Date || ''}
                         onChange={this.handleChange}
-                        style={{margin: 15}}
+                        style={{margin: 15, width: 150}}
                     /><br/>
-                    <FormControl style={{margin: 15}}>
+                    <FormControl style={{width: 150,  margin: 15}}>
                     <InputLabel htmlFor="age-native-simple">Evaluation</InputLabel>
                     <Select
                         native
@@ -83,14 +89,16 @@ class EvaluationForm extends PureComponent {
                         > 
                         Submit evaluation
                         </Button>
+                        <Link to={`/students/${student.id}/evaluations`} style={{textDecoration: 'none'}}>
                         <Button 
                             type='submit'
                             variant="raised" 
                             className="question-action"
                             color="secondary"
                         > 
-                        Next Student
+                        evaluation history
                         </Button>
+                        </Link>
                     </CardActions>
 
                 </form>
@@ -102,6 +110,7 @@ class EvaluationForm extends PureComponent {
 const mapStateToProps = function (state) {
 	return {
         evaluations: state.evaluations,
+        student: state.student,
 	}
 }
 

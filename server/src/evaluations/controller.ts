@@ -19,5 +19,16 @@ export default class EvaluationController {
 
     return createdEvaluation
   }
+
+  @Get('/students/:id([0-9]+)/evaluations')
+  async getEvaluations(
+    @Param('id') studentId: number,
+  ) {
+    const student = await Student.findOne(studentId)
+    if (!student) throw new NotFoundError('Evaluation not found!')
+
+    return student.evaluations
+  }
+
 }
 

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { getStudent, updateStudent } from '../../actions/students'
+import { getEvaluations } from '../../actions/evaluations'
 import Card, {CardMedia, CardContent} from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
@@ -8,6 +9,7 @@ import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
 import StudentEditForm from './StudentEditForm'
 import EvaluationForm from './EvaluationForm'
+import EvaluationHistory from './EvaluationsHistory'
 
 class EvaluationPage extends PureComponent {
 
@@ -31,18 +33,19 @@ class EvaluationPage extends PureComponent {
     this.toggleEdit()
 }
   
-  
 
-     componentWillMount() {
+    componentWillMount() {
+      this.props.getEvaluations(this.state.studentId)
       this.props.getStudent(this.state.studentId)
+      
      }
 
   
      render() {
-        const {student} = this.props
+        const {student, evaluation} = this.props
 
-        console.log(student.studentById)
-        console.log("hello")
+        console.log(evaluation, "help")
+        console.log(student, "student")
        
         return(
           <Paper>
@@ -55,6 +58,9 @@ class EvaluationPage extends PureComponent {
             <CardContent>
             <Typography variant="headline" component="h2">
                 {student.firstName} {student.lastName} <br/>
+            </Typography>
+            <Typography variant="headline" component="h2">
+                {student.lastName} <br/>
             </Typography>
             <CardMedia
                 className='media'
@@ -72,8 +78,9 @@ class EvaluationPage extends PureComponent {
     
     const mapStateToProps = function (state) {
         return {
-            student: state.student
+            student: state.student,
+            evaluation: state.evaluations[0],
         }
     }
     
-    export default connect(mapStateToProps, {getStudent,updateStudent})(EvaluationPage)
+    export default connect(mapStateToProps, {getStudent, getEvaluations, updateStudent})(EvaluationPage)
