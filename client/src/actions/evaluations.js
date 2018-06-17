@@ -4,8 +4,9 @@ import {isExpired} from '../jwt'
 
 export const ADD_EVALUATION = 'ADD_EVALUATION'
 export const GET_EVALUATIONS = 'GET_EVALUATIONS'
+export const LATEST_EVALUATION = 'LATEST_EVALUATION'
 
-export const addEvaluation = (evaluation) => (dispatch, getState) => {
+export const addEvaluation = (evaluation, studentId, update) => (dispatch, getState) => {
     
     request
     .post(`${baseUrl}/students/${evaluation.studentId}/evaluations`)
@@ -29,6 +30,22 @@ export const addEvaluation = (evaluation) => (dispatch, getState) => {
         })
       })
       .catch(err => console.error(err))
+    }
+
+
+    export const latestEvaluation = (studentId, update) => (dispatch) => {
+
+        request
+          .put(`${baseUrl}/students/${studentId}`)
+          .send({latestEvaluation: update.Evaluation})
+          .then(response => {
+            dispatch({
+              type: LATEST_EVALUATION,
+              payload: response.Evaluation
+            })
+          })
+          .catch(err => console.error(err))
   }
+
 
 

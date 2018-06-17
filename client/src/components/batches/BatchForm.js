@@ -23,7 +23,6 @@ class BatchForm extends PureComponent {
 
     render() {
 
-
         return(
             <form onSubmit={this.handleSubmit} className="addBatch">
                 <TextField
@@ -37,15 +36,23 @@ class BatchForm extends PureComponent {
                   id='startDate'
                   name='startDate'
                   label='Start Date'
+                  type='date'
                   value={this.state.startDate || ''}
                   onChange={this.handleChange}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   />
                 <TextField
                     id='endDate'
                     name='endDate'
                     label='End Date'
+                    type='date'
                     value={this.state.endDate || ''}
                     onChange={this.handleChange}
+                    InputLabelProps={{
+                        shrink: true,
+                      }}
                 />
                 <Button
                     type='submit'

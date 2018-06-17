@@ -4,6 +4,8 @@ import { IsString } from 'class-validator'
 import {Batch} from '../batches/entity'
 import { Evaluation } from '../evaluations/entity'
 
+type color = "red" | "yellow" | "green" | "white"
+
 
 @Entity()
 export class Student extends BaseEntity {
@@ -22,6 +24,9 @@ lastName: string
 @IsString()
 @Column('text')
 picture: string
+
+@Column('text', { nullable: true, default: 'white'  })
+latestEvaluation: color
 
 @ManyToOne(_ => Batch, batch => batch.students)
 batch: Batch
