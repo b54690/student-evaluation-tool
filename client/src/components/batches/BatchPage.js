@@ -55,7 +55,6 @@ renderBatch = (batch, index) => {
         return(
             <Paper className="outer-paper">
             <h2>Add a new batch</h2>
-            <p>Date YYYY-MM-DD format</p>
             <BatchForm />
             <h2>All Batches</h2>
             <Grid container spacing={24}>

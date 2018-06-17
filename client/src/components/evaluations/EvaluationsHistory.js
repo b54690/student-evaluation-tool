@@ -47,7 +47,7 @@ render() {
 
     return(
         <Paper className={styles.root}>
-        <Typography variant="title" id="tableTitle" style={{margin: 20}}>
+        <Typography variant="title" id="tableTitle" style={{marginBottom: -20, paddingBottom: -20,margin: 20}}>
             {`${student.firstName} ${student.lastName} Evaluation History`}
         </Typography>
         <Table className={styles.table}>

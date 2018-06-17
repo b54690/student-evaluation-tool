@@ -15,6 +15,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
+// import {latestEvaluation} from '../../actions/evaluations'
 
 
 class EvaluationForm extends PureComponent {
@@ -25,6 +26,7 @@ class EvaluationForm extends PureComponent {
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addEvaluation(this.state) 
+
     }
       
     handleChange = (e) => {
@@ -51,9 +53,13 @@ class EvaluationForm extends PureComponent {
                         id='Date'
                         name='Date'
                         label='Evaluation Date'
+                        type='date'
                         value={this.state.Date || ''}
                         onChange={this.handleChange}
                         style={{margin: 15, width: 150}}
+                        InputLabelProps={{
+                            shrink: true,
+                          }}
                     /><br/>
                     <FormControl style={{width: 150,  margin: 15}}>
                     <InputLabel htmlFor="age-native-simple">Evaluation</InputLabel>
@@ -89,7 +95,7 @@ class EvaluationForm extends PureComponent {
                         > 
                         Submit evaluation
                         </Button>
-                        <Link to={`/students/${student.id}/evaluations`} style={{textDecoration: 'none'}}>
+                        {/* <Link to={`/students/${student.id}/evaluations`} style={{textDecoration: 'none'}}>
                         <Button 
                             type='submit'
                             variant="raised" 
@@ -98,7 +104,7 @@ class EvaluationForm extends PureComponent {
                         > 
                         evaluation history
                         </Button>
-                        </Link>
+                        </Link> */}
                     </CardActions>
 
                 </form>

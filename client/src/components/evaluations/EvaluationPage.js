@@ -40,7 +40,6 @@ class EvaluationPage extends PureComponent {
       
      }
 
-  
      render() {
         const {student, evaluation} = this.props
 
@@ -59,17 +58,17 @@ class EvaluationPage extends PureComponent {
             <Typography variant="headline" component="h2">
                 {student.firstName} {student.lastName} <br/>
             </Typography>
-            <Typography variant="headline" component="h2">
-                {student.lastName} <br/>
+            <Typography variant="headline" component="h2"><br/>
             </Typography>
             <CardMedia
                 className='media'
                 title='Photo'
                 image= {student.picture}
-                style={{ width: 100, height: 40, paddingLeft: '5%', paddingTop: '10%'}}
+                style={{ width: 100, height: 20, paddingLeft: '5%', paddingTop: '10%'}}
             />
             </CardContent>
           </div>
+          <EvaluationHistory/>
           <EvaluationForm />
           </Paper>
         )
