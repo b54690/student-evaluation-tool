@@ -1,7 +1,7 @@
 Project description
 ===
 
-Evaluation Tool for Teachers (still in progress ✌🏼)
+Evaluation Tool for Teachers (styling in progress ✌🏼)
 --
 
 For my final personal assignment at the Codaisseur Academy I was tasked with building an evaluation tool 
