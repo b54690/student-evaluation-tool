@@ -4,7 +4,7 @@ import { IsString } from 'class-validator'
 import {Batch} from '../batches/entity'
 import { Evaluation } from '../evaluations/entity'
 
-type color = "red" | "yellow" | "green" | "white"
+type color = "Red" | "Yellow" | "Green" | "White"
 
 
 @Entity()
@@ -25,10 +25,10 @@ lastName: string
 @Column('text')
 picture: string
 
-@Column('text', { nullable: true, default: 'white'  })
+@Column('text', { nullable: true, default: 'White'  })
 latestEvaluation: color
 
-@ManyToOne(_ => Batch, batch => batch.students)
+@ManyToOne(_ => Batch, batch => batch.students, { onDelete: 'CASCADE' })
 batch: Batch
 
 @OneToMany(_ => Evaluation, evaluation => evaluation.student, {eager: true})
