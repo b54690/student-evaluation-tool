@@ -4,6 +4,9 @@ import { IsString } from 'class-validator'
 import { Student } from '../students/entity'
 import { Teacher } from '../teachers/entity'
 
+
+type color = "Red" | "Yellow" | "Green" | "White"
+
 @Entity()
 export class Evaluation extends BaseEntity {
 
@@ -19,7 +22,7 @@ export class Evaluation extends BaseEntity {
   
     @IsString()
     @Column('text')
-    Evaluation: string
+    Evaluation: color
   
     @ManyToOne(_ => Student, student => student.evaluations, { onDelete: 'CASCADE' })
     student: Student

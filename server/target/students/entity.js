@@ -36,11 +36,11 @@ __decorate([
     __metadata("design:type", String)
 ], Student.prototype, "picture", void 0);
 __decorate([
-    typeorm_1.Column('text', { nullable: true, default: 'white' }),
+    typeorm_1.Column('text', { nullable: true, default: 'White' }),
     __metadata("design:type", String)
 ], Student.prototype, "latestEvaluation", void 0);
 __decorate([
-    typeorm_1.ManyToOne(_ => entity_1.Batch, batch => batch.students),
+    typeorm_1.ManyToOne(_ => entity_1.Batch, batch => batch.students, { onDelete: 'CASCADE' }),
     __metadata("design:type", entity_1.Batch)
 ], Student.prototype, "batch", void 0);
 __decorate([
