@@ -15,7 +15,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
-// import {latestEvaluation} from '../../actions/evaluations'
+import {latestEvaluation} from '../../actions/evaluations'
 
 
 class EvaluationForm extends PureComponent {
@@ -26,6 +26,7 @@ class EvaluationForm extends PureComponent {
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addEvaluation(this.state) 
+        this.props.latestEvaluation(this.props.studentId, this.state)
 
     }
       
@@ -37,6 +38,7 @@ class EvaluationForm extends PureComponent {
             alert ('Evaluation already posted for this date')}
             else {
                 this.setState({
+                    evaluation: this.props.latestEvaluation,
                     [name]: value,
                 })
             }
@@ -120,4 +122,4 @@ const mapStateToProps = function (state) {
 	}
 }
 
-export default connect(mapStateToProps, {addEvaluation}) (EvaluationForm);
+export default connect(mapStateToProps, {addEvaluation, latestEvaluation}) (EvaluationForm);
