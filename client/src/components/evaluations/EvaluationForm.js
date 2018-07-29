@@ -38,7 +38,7 @@ class EvaluationForm extends PureComponent {
             alert ('Evaluation already posted for this date')}
             else {
                 this.setState({
-                    evaluation: this.props.latestEvaluation,
+                    // evaluation: this.props.latestEvaluation,
                     [name]: value,
                 })
             }
