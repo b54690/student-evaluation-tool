@@ -31,16 +31,16 @@ class StudentsList extends PureComponent {
     
         return (
         <Grid item key={index}>
-            <Card key={student.id} className="student-card">
+            <Card key={student.id} style={{backgroundColor: `${student.latestEvaluation}`}} className="student-card">
             <CardContent>
                 <Typography variant="headline" component="h2">
-                    {student.firstName} {student.lastName} <br/>
+                    {student.firstName} {student.lastName}
                 </Typography>
                 <CardMedia
                     className='media'
                     title='Photo'
                     image= {student.picture}
-                    style={{ width: 300, height: 25,paddingTop: '100%'}}
+                    style={{ width: 200, height: 25,paddingTop: '100%'}}
                 />
             </CardContent>
                 <CardActions>
@@ -87,6 +87,7 @@ class StudentsList extends PureComponent {
 const mapStateToProps = function (state) {
 	return {
         students: state.students,
+
 }}
 
 export default connect(mapStateToProps, {getStudents, deleteStudent})(StudentsList)
