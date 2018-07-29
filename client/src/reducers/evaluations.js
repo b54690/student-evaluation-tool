@@ -1,5 +1,5 @@
 import {ADD_EVALUATION, GET_EVALUATIONS } from '../actions/evaluations'
-import {LATEST_EVALUATION} from '../actions/evaluations'
+// import {LATEST_EVALUATION} from '../actions/evaluations'
 
 export default (state = [], {type, payload}) => {
 	switch(type) {
@@ -9,8 +9,8 @@ export default (state = [], {type, payload}) => {
     case GET_EVALUATIONS:
       return payload
 
-    case LATEST_EVALUATION:
-      return {...state, latestEvaluation: payload.latestEvaluation}
+    // case LATEST_EVALUATION:
+    //   return {...state, latestEvaluation: payload.latestEvaluation}
 
     default:
       return state

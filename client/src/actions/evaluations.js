@@ -35,17 +35,18 @@ export const addEvaluation = (evaluation, studentId, update) => (dispatch, getSt
 
     export const latestEvaluation = (studentId, update) => (dispatch) => {
 
+      const studentId = (window.location.href).split('/').pop()
+
         request
           .put(`${baseUrl}/students/${studentId}`)
           .send({latestEvaluation: update.Evaluation})
           .then(response => {
             dispatch({
               type: LATEST_EVALUATION,
-              payload: response.Evaluation
+              payload: response.body
             })
           })
           .catch(err => console.error(err))
   }
-
 
 
