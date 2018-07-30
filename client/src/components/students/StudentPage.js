@@ -6,7 +6,7 @@ import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField'
 import {addStudent, getStudents} from '../../actions/students'
 import RandomQuestions from './RandomStudent'
-
+import RatingChart from './RatingChart'
 
 class StudentsPage extends PureComponent {
     
@@ -37,6 +37,7 @@ class StudentsPage extends PureComponent {
 
         return(
             <Paper className="outer-paper">
+            <RatingChart/>
                <form onSubmit={this.handleSubmit} className='createStudent'>
                     <TextField
                         id='student'
@@ -70,7 +71,10 @@ class StudentsPage extends PureComponent {
                         >
                         Create Student
                     </Button>
-                </form><RandomQuestions/>
+                </form>
+                
+                
+                <RandomQuestions/>
 
                 <StudentsList/>
 

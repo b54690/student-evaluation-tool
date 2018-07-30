@@ -75,9 +75,9 @@ class EvaluationForm extends PureComponent {
                         }}
                     >
                         <option value="" />
-                        <option value="Green">Green</option>
-                        <option value="Yellow">Yellow</option>
-                        <option value="Red">Red</option>
+                        <option value="Green/#81c784">Green</option>
+                        <option value="Yellow/#fff176">Yellow</option>
+                        <option value="Red/#e57373">Red</option>
                     </Select>
                     </FormControl>
                     <TextField fullWidth
