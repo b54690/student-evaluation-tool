@@ -6,6 +6,10 @@ import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid';
 import { getStudents, deleteStudent } from '../../actions/students'
 import {Link} from 'react-router-dom'
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
+import DeleteIcon from '@material-ui/icons/Delete';
+
   
 class StudentsList extends PureComponent {
 
@@ -30,11 +34,14 @@ class StudentsList extends PureComponent {
     renderStudent = (student, index) => {
     
         return (
-        <Grid item key={index}>
-            <Card key={student.id} style={{backgroundColor: `${student.latestEvaluation}`}} className="student-card">
+        <Grid >
+            <Card key={student.id} style={{     
+                        flex: 1,
+                        margin: 10,
+                        backgroundColor: `${student.latestEvaluation}`.split('/')[1]}} className="student-card">
             <CardContent>
                 <Typography variant="headline" component="h2">
-                    {student.firstName} {student.lastName}
+                    {student.firstName}   {student.lastName}
                 </Typography>
                 <CardMedia
                     className='media'
@@ -48,23 +55,23 @@ class StudentsList extends PureComponent {
                     <Button
                         type='submit'
                         size="small"
-                        color="primary"
+                        color="white"
                         variant="raised"
                         className="info-student"
                         >
-                        info
+                        <InfoIcon />
                     </Button>
                     </Link>
                     <Button
                         type='submit'
-                        color="secondary"
+                        color="white"
                         variant="raised"
                         className="info-student"
                         size="small"
                         variant="raised"
                         onClick={() => this.deleteStudent(student.id)}
                     >
-                        DELETE
+                        <DeleteIcon/>
                     </Button>
                 </CardActions>
             </Card>
@@ -76,7 +83,14 @@ class StudentsList extends PureComponent {
         
 
         return(
-            <Grid container spacing={16}>
+            <Grid container spacing={24}
+            style={{
+                display: 'flex',
+                flexDirection: 'row wrap',
+                padding: 20,
+                paddingLeft: 20,
+                paddingRight: 20,
+              }}>
                 {students.map((student, index) => this.renderStudent(student, index))}
             </Grid>
             
