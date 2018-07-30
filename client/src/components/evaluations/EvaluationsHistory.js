@@ -65,7 +65,8 @@ render() {
                 <TableRow key={index}>
                   <TableCell key={evaluation.id} component="th" scope="row">{evaluation.Date}</TableCell>
                   <TableCell >{evaluation.Teacher}</TableCell>
-                  <TableCell >{`${evaluation.Evaluation}`.split('/')[0]}</TableCell>
+                  <TableCell style={{     
+                        backgroundColor: `${evaluation.Evaluation}`.split('/')[1]}}></TableCell>
                   <TableCell >{evaluation.Remark}</TableCell>
                 </TableRow>
               );
