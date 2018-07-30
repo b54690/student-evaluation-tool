@@ -60,10 +60,11 @@ return (
       marginBottom: '30px', 
       marginRight: 'auto',
       padding: '20px',
+      paddingTop: '30px',
       width: '90%',
       textAlign: 'center'}}
       >
-      <Typography variant="headline"> Latest evaluation for current batch: </Typography>
+      <Typography variant="headline"> Latest Evaluations for Batch {this.state.batchId}</Typography>
         <div style={{maxWidth:"500px", margin: 'auto'}}>
             <Doughnut data={data}/>
         </div>
@@ -75,9 +76,18 @@ render() {
     const {students} = this.props
 
     return (
-      <div>
+      <Paper style={{
+        marginTop: '30px', 
+        marginLeft: 'auto', 
+        marginBottom: '30px', 
+        marginRight: '30px',
+        padding: '20px',
+        paddingTop: '30px',
+        width: '50%',
+        textAlign: 'center'
+        }}>
           {this.calculatePercentage()}
-      </div>
+      </Paper>
     )
   }
 }

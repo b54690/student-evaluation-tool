@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
   
 class StudentsList extends PureComponent {
@@ -41,7 +42,7 @@ class StudentsList extends PureComponent {
                         backgroundColor: `${student.latestEvaluation}`.split('/')[1]}} className="student-card">
             <CardContent>
                 <Typography variant="headline" component="h2">
-                    {student.firstName}   {student.lastName}
+                <FontAwesomeIcon  icon="graduation-cap" size="1x" /> {student.firstName}   {student.lastName}
                 </Typography>
                 <CardMedia
                     className='media'
@@ -55,7 +56,7 @@ class StudentsList extends PureComponent {
                     <Button
                         type='submit'
                         size="small"
-                        color="white"
+                        color="primary"
                         variant="raised"
                         className="info-student"
                         >
@@ -64,7 +65,7 @@ class StudentsList extends PureComponent {
                     </Link>
                     <Button
                         type='submit'
-                        color="white"
+                        color="primary"
                         variant="raised"
                         className="info-student"
                         size="small"

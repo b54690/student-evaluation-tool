@@ -7,15 +7,18 @@ import { withRouter } from 'react-router'
 import { teacherInfo } from '../../jwt'
 import { connect } from 'react-redux'
 import AccountIcon from 'material-ui-icons/AccountBox'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
 
 const TopBar = (props) => {
   const { location, history, teacher } = props
 
   return (
-    <AppBar position="absolute" style={{zIndex:10}}>
+    <AppBar position="fixed" style={{zIndex:   500, top: 0 }}>
       <Toolbar>
-        <Typography variant="title" color="inherit" style={{flex: 1}}>
-          Evaluation Tool for Teachers
+        <Typography variant="title" color="inherit" style={{flex: 1, fontSize: 40}}>
+        <FontAwesomeIcon  icon="graduation-cap" size="2x" />  
         </Typography>
         {
           teacher &&

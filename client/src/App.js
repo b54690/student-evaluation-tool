@@ -7,6 +7,27 @@ import TopBar from './components/layout/TopBar'
 import BatchesList from './components/batches/BatchPage'
 import EvaluationPage from './components/evaluations/EvaluationPage'
 import StudentsList from './components/students/StudentPage';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faStroopwafel,
+  faCar,
+  faExpand,
+  faEuroSign,
+  faCheck,
+  faTags,
+  faGraduationCap
+} from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+library.add(
+  faStroopwafel,
+  faInfoCircle,
+  faCar,
+  faExpand,
+  faEuroSign,
+  faCheck,
+  faTags,
+  faGraduationCap
+)
 // import EvaluationsHistory from './components/evaluations/EvaluationsHistory';
 
 
