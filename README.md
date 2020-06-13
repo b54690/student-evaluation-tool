@@ -11,7 +11,7 @@ for the teachers at the academy using:
 - Styling: CSS, Material-ui
 - TypeScript / TypeORM / Postgres in the back-end. 
 
-I has 4 days in which to complete the project. 
+I had 4 days in which to complete the project. 
 
 User Stories
 --
